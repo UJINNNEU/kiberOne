@@ -5,11 +5,25 @@ import (
 	"kiber/config"
 	"kiber/transport/customers"
 	"kiber/transport/groups"
+	"kiber/transport/kiberons"
 	"kiber/transport/teacher"
+	"kiber/transport/token"
 )
 
 func main() {
-	config, _ := config.LoadConfig()
+	config, err := config.LoadConfig()
+
+	if err != nil {
+		fmt.Println("Ошибка конфига !")
+		return
+	}
+	err = token.GetToken(config)
+
+	if err != nil {
+		fmt.Println("%v\n", err)
+		return
+	}
+
 	fmt.Println("Привет!")
 
 	fmt.Println("\nСделаем выборку по тьюторам:")
@@ -18,8 +32,7 @@ func main() {
 		fmt.Println(v)
 	}
 
-	//Получение ID у тьюторов
-	err := teacher.GetAllIdsTeachers(config)
+	err = teacher.GetAllIdsTeachers(config)
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -28,7 +41,7 @@ func main() {
 
 	err = groups.GetAllGroups(config)
 
-	fmt.Println("Good kid:")
+	fmt.Println("Айди детей, которые заслужили кибероны:")
 
 	data, err := customers.GetCustomers(config)
 
@@ -36,4 +49,7 @@ func main() {
 		fmt.Println(val)
 	}
 
+	fmt.Println("Начинаю выставлять")
+
+	kiberons.AddBonusesToUsers(config, data)
 }
