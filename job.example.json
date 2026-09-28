@@ -1,0 +1,11 @@
+{
+	"API_KEY":"api_key",	
+	"email":"@mail.ru",
+	"amont":25,
+	"note":"акция: не пропусти месяц занятий, выставленно через API",
+	"date_from":"2026-09-01",
+	"date_to":"2026-09-30",
+	"names_tutors": [
+		"name"
+	]
+}
