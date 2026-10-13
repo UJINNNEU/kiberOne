@@ -166,4 +166,3 @@ func GetCustomers(config *config.Config) ([]int, error) {
 
 }
 
-

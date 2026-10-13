@@ -100,9 +100,28 @@ func GetAllGroups(config *config.Config) error {
 		if err == nil || data != nil {
 			fmt.Println("найдено аж ", len(data), " групп на всех туторов")
 			config.Id_groups = append(config.Id_groups, data...)
+
 		} else {
 			fmt.Println("error")
 		}
 	}
+	config.Id_groups = RemoveDuplicates(config.Id_groups)
+	fmt.Println("Uniq групп - ", len(config.Id_groups))
 	return nil
+}
+
+// удаление дубликатов
+// RemoveDuplicates удаляет дубликаты из слайса любого типа, поддерживающего сравнение
+func RemoveDuplicates[T comparable](slice []T) []T {
+	seen := make(map[T]bool)
+	result := make([]T, 0, len(slice))
+
+	for _, item := range slice {
+		if !seen[item] {
+			seen[item] = true
+			result = append(result, item)
+		}
+	}
+
+	return result
 }

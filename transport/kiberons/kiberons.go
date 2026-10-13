@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"kiber/config"
 	"net/http"
+	"time"
 )
 
 type bonusRequest struct {
@@ -64,6 +65,7 @@ func AddBonusesToUsers(cfg *config.Config, userIDs []int) error {
 			fmt.Println("не удалось начислить бонус пользователю %d: %w", id, err)
 			continue
 		}
+		time.Sleep(300 * time.Millisecond)
 	}
 	return nil
 }

@@ -5,7 +5,7 @@ import (
 	"kiber/config"
 	"kiber/transport/customers"
 	"kiber/transport/groups"
-	"kiber/transport/kiberons"
+	_ "kiber/transport/kiberons"
 	"kiber/transport/teacher"
 	"kiber/transport/token"
 )
@@ -51,5 +51,5 @@ func main() {
 
 	fmt.Println("Начинаю выставлять")
 
-	kiberons.AddBonusesToUsers(config, data)
+	//kiberons.AddBonusesToUsers(config, data)
 }
