@@ -49,7 +49,8 @@ gvm use go1.25.6
     ```
 4.  Запусти бота:
     ```bash
-    go run main/main.go
+    cd D:\kiberbot
+    go run ./main/
     ```
 
 ## 📂 Структура проекта
